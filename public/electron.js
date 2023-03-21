@@ -1,3 +1,4 @@
+//TODO: You can now run yarn electron:start to kickstart your development flow, and yarn electron:package:<platform> to generate a distributable bundle.
 // Module to control the application lifecycle and the native browser window.
 const { app, BrowserWindow, protocol } = require("electron");
 const path = require("path");
