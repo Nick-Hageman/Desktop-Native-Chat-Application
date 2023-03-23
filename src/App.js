@@ -61,8 +61,10 @@ function App() {
     <div className="App">
       <ConnectionState isConnected={ isConnected } />
       <ConnectionManager />
-      <MyForm />
+      <header className="App-header">
       <Events events={ fooEvents } />
+      </header>
+      <MyForm />
     </div>
   );
 }
