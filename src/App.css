@@ -28,6 +28,26 @@
   color: #61dafb;
 }
 
+body {
+  background-color: transparent;
+}
+
+.watev {
+  background-color: black;
+}
+
+li {
+  border-radius: 5px;
+  list-style-type: none;
+  background-color: #282c34;
+  color: white;
+  padding: 10px 18px;
+  position: relative;
+  margin: 10px;
+  max-width: 80%;
+  text-align: left;
+}
+
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);

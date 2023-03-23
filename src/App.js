@@ -34,6 +34,7 @@ function App() {
   useEffect(() => {
     function onConnect() {
       setIsConnected(true);
+      //console.log("Client Connected");
     }
 
     function onDisconnect() {
@@ -41,12 +42,13 @@ function App() {
     }
 
     function onFooEvent(value) {
+      console.log("USER CHAT: ", value);
       setFooEvents(previous => [...previous, value]);
     }
 
     socket.on('connect', onConnect);
     socket.on('disconnect', onDisconnect);
-    socket.on('foo', onFooEvent);
+    socket.on('foo', onFooEvent); // listens for server 'emit' to add chats
 
     return () => {
       socket.off('connect', onConnect);
@@ -55,13 +57,12 @@ function App() {
     };
   }, []);
 
-  // Original return //
   return (
     <div className="App">
       <ConnectionState isConnected={ isConnected } />
-      <Events events={ fooEvents } />
       <ConnectionManager />
       <MyForm />
+      <Events events={ fooEvents } />
     </div>
   );
 }
