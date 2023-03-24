@@ -1,5 +1,8 @@
 import logo from './logo.svg';
 import './App.css';
+import img from './hawktalk.png';
+import img2 from './onlineStatus.png';
+import img3 from './offlineStatus.png';
 
 // Socket.io imports //
 import React, { useState, useEffect } from 'react';
@@ -59,12 +62,28 @@ function App() {
 
   return (
     <div className="App">
-      <ConnectionState isConnected={ isConnected } />
-      <ConnectionManager />
-      <header className="App-header">
-      <Events events={ fooEvents } />
-      </header>
-      <MyForm />
+      <div className="sidebar">
+        <div className='menu-connection'>
+          <img src={img} className="hawktalk" width="100%" height="90%" />
+        </div>
+        <div className="middle">
+          <a href="#" className="btn btn1">Room 1</a>
+          <a href="#" className="btn btn2">Room 2</a>
+          <a href="#" className="btn btn3">Room 3</a>
+          <a href="#" className="btn btn4">Room 4</a>
+        </div>
+        <div className='profile-info'>-My Profile-</div>
+      </div>
+        <div className='chat-header'>#General</div>
+        <Events events={ fooEvents } />
+        <MyForm />
+      <div className="sidebar2">
+        <ConnectionState isConnected={ isConnected } />
+        <ConnectionManager />
+        <div><img src={img2} width="10" height="10" />  User1: Online</div>
+        <div><img src={img3} width="10" height="10" />  User2: Online</div>
+        <div><img src={img3} width="10" height="10" />  User3: Online</div>
+      </div>
     </div>
   );
 }

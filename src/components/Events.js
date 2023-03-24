@@ -5,7 +5,7 @@ export function Events({ events }) {
     <ul>
     {
       events.map((event, index) =>
-        <li key={ index }>{ event }</li>
+        <li className='chat-message' key={ index }>{ event }</li>
       )
     }
     </ul>

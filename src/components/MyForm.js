@@ -9,16 +9,16 @@ export function MyForm() {
     event.preventDefault();
     setIsLoading(true);
 
-    socket.timeout(5000).emit('create-something', value, () => {
+    socket.timeout(1000).emit('create-something', value, () => { // Limited to a chat every second (1000ms)
       setIsLoading(false);
     });
+    //<button id="submit-button" type="submit" disabled={ isLoading }>Submit</button>
   }
 
   return (
     <form id="submit-form" onSubmit={ onSubmit }>
-      <input id="submit-input" onChange={ e => setValue(e.target.value) } />
+      <input id="submit-input" placeholder="Message..." onChange={ e => setValue(e.target.value) } />
 
-      <button id="submit-button" type="submit" disabled={ isLoading }>Submit</button>
     </form>
   );
 }
