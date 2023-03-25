@@ -1,19 +1,21 @@
 import React from 'react';
 import { socket } from '../socket';
 
-export function RoomManager() {
+export function RoomManager({ roomNum }) {
   function connectRoom1() {
-    socket.emit("connect-room-1");
+    socket.emit("connect-room", 1); // include room # argument
   }
   function connectRoom2() {
-    socket.emit("connect-room-2");
+    socket.emit("connect-room", 2);
   }
   function connectRoom3() {
-    socket.emit("connect-room-3");
+    socket.emit("connect-room", 3);
   }
   function connectRoom4() {
-    socket.emit("connect-room-4");
+    socket.emit("connect-room", 4);
   }
+
+  //socket.emit // Change messages depending on chat
 
   return (
     <>
