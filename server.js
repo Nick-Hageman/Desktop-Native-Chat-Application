@@ -1,11 +1,20 @@
 const { createServer } = require("http");
 const { Server } = require("socket.io");
+const { createAdapter } = require("@socket.io/mongo-adapter");
+const { MongoClient } = require("mongodb");
+
+const DB = "mydb";
+const COLLECTION = "socket.io-adapter-events";
 
 const httpServer = createServer();
 const io = new Server(httpServer, {
   cors: {
     origin: "http://localhost:3000"
   }
+});
+
+const mongoClient = new MongoClient("mongodb+srv://chatapp:123@chatcluster.eqemmmr.mongodb.net/?retryWrites=true&w=majority", {
+  useUnifiedTopology: true,
 });
 
 let users = {};
@@ -16,49 +25,23 @@ const messages = { // Implement Database rather than storing on this server
   help: []
 }
 
+const main = async () => {
+  await mongoClient.connect();
+
+  try {
+    await mongoClient.db(DB).createCollection(COLLECTION, {
+      capped: true,
+      size: 1e6
+    });
+  } catch (e) {
+    // collection already exists
+  }
+  const mongoCollection = mongoClient.db(DB).collection(COLLECTION);
+
+  io.adapter(createAdapter(mongoCollection));
 // User connects to server
 io.on("connection", (socket) => {
   console.log("New Client Connected");
-  /*
-  socket.on("join server", (username) => {
-    const user = {
-      username,
-      id: socket.id,
-    };
-  users.push(user);
-  io.emit("new user", users);
-  });
-
-  socket.on("join room", (roomName, cb) => {
-    socket.join(roomName);
-    cb(messages[roomName]);
-  });
-
-  socket.on("send message", ({ content, to, sender, chatName, isChannel }) => {
-    if (isChannel) { // Check if sending to a channel
-      const payload = {
-        content,
-        chatName,
-        sender,
-      };
-      socket.to(to).emit("new message", payload);
-    } else { // Check if sending to another user (Direct message)
-      const payload = {
-        content,
-        chatName: sender,
-        sender,
-      };
-      socket.to(to).emit("new message", payload);
-    }
-    if (messages[chatName]) {
-      messages[chatName].push({
-        sender,
-        content
-      });
-    }
-  });
-*/
-  
   
   // User disconnects from server
   socket.on('disconnect', () => {
@@ -105,3 +88,6 @@ io.on("connection", (socket) => {
 io.listen(4000, () => {
   console.log('listening on *:4000');
 });
+}
+
+main();
