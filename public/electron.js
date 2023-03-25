@@ -7,7 +7,7 @@ const url = require("url");
 // Create the native browser window.
 function createWindow() {
   const mainWindow = new BrowserWindow({
-    width: 800,
+    width: 1200,
     height: 600,
     icon: './public/corn.png',
     // Set the path of an additional "preload" script that can be used to

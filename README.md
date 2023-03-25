@@ -70,3 +70,4 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
 
 button HTML/CSS source: https://codepen.io/Freeps2/pen/xxapoyY
+Help with socket.io "rooms": https://www.youtube.com/watch?v=o8x-nLc-V4o
