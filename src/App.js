@@ -40,7 +40,7 @@ function App() {
   const [fooEvents, setFooEvents] = useState([]);
   const [barEvents, setBarEvents] = useState([]);
   const [isLoggedIn, setLoggedIn] = useState(false);
-  const [inRoom, setRoom] = useState(1);
+  const [inRoom, setRoom] = useState("#Announcements");
 
   useEffect(() => {
     function onConnect() {
@@ -108,7 +108,7 @@ function App() {
         </div>
         <div className='profile-info'>-My Profile-</div>
       </div>
-        <div className='chat-header'>#General</div>
+        <div className='chat-header'>{ inRoom }</div>
         {body}
         <Events events={ fooEvents } />
         <MyForm roomNum = { inRoom }/>

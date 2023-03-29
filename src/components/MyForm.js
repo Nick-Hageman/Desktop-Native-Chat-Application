@@ -2,6 +2,16 @@ import React, { useState } from 'react';
 import { socket } from '../socket';
 
 export function MyForm({ roomNum }) {
+  if (roomNum == "#Announcements") {
+    roomNum = 1;
+  } else if (roomNum == "#General") {
+    roomNum = 2;
+  } else if (roomNum == "#Links") {
+    roomNum = 3;
+  } else if (roomNum == "#Help") {
+    roomNum = 4;
+  }
+
   const [value, setValue] = useState(''); //make object {e.target.value, chatroom}
   const [isLoading, setIsLoading] = useState(false);
 

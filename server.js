@@ -104,7 +104,17 @@ io.on("connection", async (socket) => {
 
   //For connecting to different Chat rooms
   socket.on('connect-room', (value) => {
-    socket.emit("room", value);
+    let headerRoom;
+    if (value == 1) {
+      headerRoom = "#Announcements";
+    } else if (value == 2) {
+      headerRoom = "#General";
+    } else if (value == 3) {
+      headerRoom = "#Links";
+    } else if (value == 4) {
+      headerRoom = "#Help";
+    }
+    socket.emit("room", headerRoom);
     console.log(users[socket.id] + " entering Room: " + value);
     if (value == 1) {
       socket.emit("foo", arr1);

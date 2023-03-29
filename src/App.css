@@ -220,11 +220,12 @@ hr.new5 {
 .chat-header {
   background-color: #2f3133;
   color: white;
-  position: fixed;
+  position: absolute;
   width: 100%;
   left: 15%;
   text-align: left;
   z-index: 10; /* Be in front of the messages*/
+  font-family: 'Anonymous Pro';
 }
 
 
