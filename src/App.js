@@ -41,7 +41,6 @@ function App() {
   const [barEvents, setBarEvents] = useState([]);
   const [isLoggedIn, setLoggedIn] = useState(false);
   const [inRoom, setRoom] = useState(1);
-  const messagesEndRef = useRef(null);
 
   useEffect(() => {
     function onConnect() {
@@ -111,7 +110,7 @@ function App() {
       </div>
         <div className='chat-header'>#General</div>
         {body}
-        <Events ref={messagesEndRef} events={ fooEvents } />
+        <Events events={ fooEvents } />
         <MyForm roomNum = { inRoom }/>
       <div className="sidebar2">
         <Users events={ barEvents } />

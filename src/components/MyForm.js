@@ -12,6 +12,7 @@ export function MyForm({ roomNum }) {
     socket.timeout(1000).emit('create-something', { message: value, chatRoom: roomNum }, () => { // Limited to a chat every second (1000ms)
       setIsLoading(false);
     });
+    document.getElementById('submit-form').reset();
     //<button id="submit-button" type="submit" disabled={ isLoading }>Submit</button>
   }
 
