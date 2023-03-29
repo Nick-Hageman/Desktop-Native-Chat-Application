@@ -7,14 +7,17 @@ export function Users({ events }) {
     newEvents.push(events[k]);
   }
   return (
-    <ul>
-      <li>Users Online: {newEvents.length}</li>
-    {
-      newEvents.map((event, index) =>
-        //<li className='chat-message' key={ index }>{ event }</li>
-        <div><img src={img2} width="10" height="10" /> { event } </div>
-      )
-    }
-    </ul>
+    <>
+      <p className='channel-list'>Users Online: {newEvents.length}</p>
+      <hr className="new5"></hr>
+      <ul className='online-users-list'>
+      {
+        newEvents.map((event, index) =>
+          //<li className='chat-message' key={ index }>{ event }</li>
+          <div><img src={img2} width="10" height="10" /> { event } </div>
+        )
+      }
+      </ul>
+    </>
   );
 }

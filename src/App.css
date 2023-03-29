@@ -105,10 +105,47 @@
 .message-list {
   position: fixed;
   bottom: 10%;
+  height: 90%;
+  width: 68%;
   left: 13%;
+  overflow-y: scroll;
+}
+
+        /* Designing for scroll-bar */
+::-webkit-scrollbar {
+    width: 6px;
+}
+     
+/* Track */
+::-webkit-scrollbar-track {
+    background: #45484e;
+    border-radius: 5px;
+}
+     
+/* Handle */
+ ::-webkit-scrollbar-thumb {
+    background: #2f3135;
+    border-radius: 5px;
+}
+     
+ /* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background: #555;
 }
 
 li {
+  border-radius: 5px;
+  list-style-type: none;
+  background-color: #3f4248;
+  color: white;
+  position: relative;
+  margin: 10px;
+  text-align: left;
+  word-wrap: break-word;
+  max-width:70%;
+}
+
+.message-div {
   border-radius: 5px;
   list-style-type: none;
   background-color: #3f4248;
@@ -118,7 +155,36 @@ li {
   margin: 10px;
   text-align: left;
   word-wrap: break-word;
+  min-width: 50%;
   max-width:70%;
+}
+
+.message-handle {
+  font-size: calc(0.75*(1vh + 1vw));
+  color: goldenrod;
+}
+
+.message-date {
+  color: grey;
+}
+
+.message-div p {
+  display: inline;
+}
+
+.online-user-counter {
+  background-color:#383b3d;
+  width: 15vw;
+}
+
+/* Large rounded green border */
+hr.new5 {
+  border: 0.5vh solid goldenrod;
+  border-radius: 5px;
+}
+
+.channel-list {
+  font-family: 'Anonymous Pro';
 }
 
 .profile-info {
@@ -147,6 +213,7 @@ li {
   right: 0;
   padding-top: 10px;
   background-color: #2c2e30;
+  
 }
 
 /* Top Chat Room Description  */
@@ -157,6 +224,7 @@ li {
   width: 100%;
   left: 15%;
   text-align: left;
+  z-index: 10; /* Be in front of the messages*/
 }
 
 

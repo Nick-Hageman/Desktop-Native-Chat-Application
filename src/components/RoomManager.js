@@ -19,6 +19,7 @@ export function RoomManager({ roomNum }) {
 
   return (
     <>
+      <hr className="new5"></hr>
       <a href="#" className="btn btn1" onClick={ connectRoom1 }>#Announcements</a>
       <a href="#" className="btn btn2" onClick={ connectRoom2 }>#General-chat</a>
       <a href="#" className="btn btn3" onClick={ connectRoom3 }>#Links</a>

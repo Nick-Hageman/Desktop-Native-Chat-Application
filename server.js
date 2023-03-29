@@ -42,15 +42,17 @@ const main = async () => {
   const updateChat = async (roomNum) => { // update chat's when new connections or new chats sent
     try {
       x = await mongoCollection.find({chatroom: roomNum}).toArray(); // get 8 recent most chats (room1)
+      //console.log(x);
       for (i in x) { // modify the current chatroom array
+        console.log([x[i].message, x[i].sender, x[i].date]);
         if (roomNum == 1) {
-          arr1[i] = x[i].message;
+          arr1[i] = [x[i].message, x[i].sender, x[i].date];
         } else if (roomNum == 2) {
-          arr2[i] = x[i].message;
+          arr2[i] = [x[i].message, x[i].sender, x[i].date];
         } else if (roomNum == 3) {
-          arr3[i] = x[i].message;
+          arr3[i] = [x[i].message, x[i].sender, x[i].date];
         } else if (roomNum == 4) {
-          arr4[i] = x[i].message;
+          arr4[i] = [x[i].message, x[i].sender, x[i].date];
         }
       }
     } catch (e) {
@@ -58,9 +60,10 @@ const main = async () => {
     }
   }
 // User connects to server
-io.on("connection", (socket) => {
+io.on("connection", async (socket) => {
   console.log("New Client Connected");
-  
+  await updateChat(1); // Updates whatever chat the new message was created in
+
   // User disconnects from server
   socket.on('disconnect', () => {
     console.log(socket.id + ' Disconnected');
@@ -72,10 +75,15 @@ io.on("connection", (socket) => {
   socket.on('create-something', async (value) => {
     //console.log("USER CHAT: " + value.message + " || SENT: " + Date(Date.now()).toString());
     //io.emit('foo', value.message);
+    const today = new Date();
+    const formattedDate = new Intl.DateTimeFormat("en-us", {
+      dateStyle: "full"
+    });
+    console.log(formattedDate);
     payload = {
       message: value.message,
       sender: users[socket.id],
-      date: Date(Date.now()).toString(),
+      date: formattedDate.format(today),
       chatroom: value.chatRoom
     }
     mongoCollection.insertOne(payload);

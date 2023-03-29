@@ -5,7 +5,7 @@ import img2 from './onlineStatus.png';
 import img3 from './offlineStatus.png';
 
 // Socket.io imports //
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { socket } from './socket';
 import { ConnectionState } from './components/ConnectionState';
 import { Events } from './components/Events';
@@ -41,6 +41,7 @@ function App() {
   const [barEvents, setBarEvents] = useState([]);
   const [isLoggedIn, setLoggedIn] = useState(false);
   const [inRoom, setRoom] = useState(1);
+  const messagesEndRef = useRef(null);
 
   useEffect(() => {
     function onConnect() {
@@ -67,7 +68,7 @@ function App() {
       setRoom(value); // Change room # state
       //call server to update messages depending on Room
     }
-    
+
 
     socket.on('connect', onConnect);
     socket.on('disconnect', onDisconnect);
@@ -103,13 +104,14 @@ function App() {
           <img src={img} className="hawktalk" width="100%" height="90%" />
         </div>
         <div className="middle">
+          <p className='channel-list'>Channels</p>
           <RoomManager roomNum = { inRoom }/>
         </div>
         <div className='profile-info'>-My Profile-</div>
       </div>
         <div className='chat-header'>#General</div>
         {body}
-        <Events events={ fooEvents } />
+        <Events ref={messagesEndRef} events={ fooEvents } />
         <MyForm roomNum = { inRoom }/>
       <div className="sidebar2">
         <Users events={ barEvents } />

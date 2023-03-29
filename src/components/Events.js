@@ -1,16 +1,15 @@
 import React from 'react';
 
 export function Events({ events }) {
-  let newEvents = [];
-  for (let k in events) {
-    newEvents.push(events[k]);
-  }
-  console.log(newEvents);
+  events = events.reverse();
   return (
     <ul className='message-list'>
     {
       events.map((event, index) =>
-        <li className='chat-message' key={ index }>{ event }</li>
+      <div className='message-div'>
+        <p className='message-handle'>{ event[1] }<p className='message-date'> &nbsp; { event[2] }</p></p>
+        <li className='chat-message' key={ index }>{ event[0] }</li>
+      </div>
       )
     }
     </ul>
