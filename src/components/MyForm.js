@@ -19,7 +19,7 @@ export function MyForm({ roomNum }) {
     event.preventDefault();
     setIsLoading(true);
 
-    socket.timeout(1000).emit('create-something', { message: value, chatRoom: roomNum }, () => { // Limited to a chat every second (1000ms)
+    socket.timeout(5000).emit('create-something', { message: value, chatRoom: roomNum }, () => { // Limited to a chat every five seconds (5000ms)
       setIsLoading(false);
     });
     document.getElementById('submit-form').reset();

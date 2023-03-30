@@ -44,7 +44,7 @@ const main = async () => {
       x = await mongoCollection.find({chatroom: roomNum}).toArray(); // get 8 recent most chats (room1)
       //console.log(x);
       for (i in x) { // modify the current chatroom array
-        console.log([x[i].message, x[i].sender, x[i].date]);
+        //console.log([x[i].message, x[i].sender, x[i].date]);
         if (roomNum == 1) {
           arr1[i] = [x[i].message, x[i].sender, x[i].date];
         } else if (roomNum == 2) {
@@ -79,13 +79,13 @@ io.on("connection", async (socket) => {
     const formattedDate = new Intl.DateTimeFormat("en-us", {
       dateStyle: "full"
     });
-    console.log(formattedDate);
     payload = {
       message: value.message,
       sender: users[socket.id],
       date: formattedDate.format(today),
       chatroom: value.chatRoom
     }
+    console.log(payload);
     mongoCollection.insertOne(payload);
     await updateChat(value.chatRoom); // Updates whatever chat the new message was created in
     if (value.chatRoom == 1) { // Call 'foo' to update values on Client side

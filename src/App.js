@@ -15,25 +15,6 @@ import { RoomManager } from './components/RoomManager';
 import { LoginPage } from './components/LoginPage';
 import { Users } from './components/Users';
 
-//import immer from "immer";
-
-/* Default React Template
-<header className="App-header">
-<img src={logo} className="App-logo" alt="logo" />
-<p>
-  Edit <code>src/App.js</code> and save to reload.
-</p>
-<a
-  className="App-link"
-  href="https://reactjs.org"
-  target="_blank"
-  rel="noopener noreferrer"
->
-  Learn React
-</a>
-</header>
-*/
-
 function App() {
   // Socket.io //
   const [isConnected, setIsConnected] = useState(socket.connected);
